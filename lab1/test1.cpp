@@ -46,6 +46,26 @@ TEST(test_09, basic_tests)
     ASSERT_TRUE(conversion_time(10, 10, "am") == "1010");
 }
 
+TEST(test_10, basic_tests)
+{
+    ASSERT_THROW(conversion_time(10, 10, "f"), std::invalid_argument);
+}
+
+TEST(test_11, basic_tests)
+{
+    ASSERT_THROW(conversion_time(10, 60, "am"), std::invalid_argument);
+}
+
+TEST(test_12, basic_tests)
+{
+    ASSERT_THROW(conversion_time(0, 0, "am"), std::invalid_argument);
+}
+
+TEST(test_13, basic_tests)
+{
+    ASSERT_THROW(conversion_time(13, 60, "ss"), std::invalid_argument);
+}
+
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
