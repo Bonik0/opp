@@ -7,11 +7,11 @@ include_directories(${GTEST_INCLUDE_DIRS})
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(task01 main.cpp conversion_time.cpp)
+add_executable(task1 main.cpp conversion_time.cpp)
 
 
 enable_testing()
-add_executable(tests test1.cpp  conversion_time.cpp)
-target_link_libraries(tests ${GTEST_LIBRARIES})
+add_executable(tests1 test1.cpp  conversion_time.cpp)
+target_link_libraries(tests1 ${GTEST_LIBRARIES})
 
-add_test(NAME BASIC COMMAND tests)
+add_test(NAME BASIC COMMAND tests1)

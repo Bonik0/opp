@@ -1,5 +1,5 @@
 #include "googletest/googletest/include/gtest/gtest.h"
-#include "conversion_time.cpp"
+#include "conversion_time.h"
 
 TEST(test_01, basic_tests)
 {
