@@ -87,7 +87,7 @@ TEST(test_14, test_init) {
 
 TEST(test_1, test_eq) {
     Three s;
-    Three s1({'1'});
+    Three s1({'0'});
     ASSERT_TRUE(s1 == s);
 }
 TEST(test_2, test_eq) {
@@ -152,7 +152,7 @@ TEST(test_2, test_math) {
 TEST(test_3, test_math) {
     Three s("1");
     Three s1("12");
-    Three s2("100");
+    Three s2("20");
     ASSERT_TRUE(s + s1 == s2);
 }
 
@@ -260,10 +260,10 @@ TEST(test_18, test_math) {
 
 
 TEST(test_19, test_math) {
-    Three s("10221");
+    Three s("2222");
     Three s1("222");
     s1 += s;
-    Three s2("2222");
+    Three s2("10221");
     ASSERT_TRUE(s1 == s2);
 }
 
@@ -271,7 +271,7 @@ TEST(test_20, test_math) {
     Three s("1000001");
     Three s1("1");
     s1 -= s;
-    Three s2("1000000");
+    Three s2("1");
     ASSERT_TRUE(s1 == s2);
 }
 
