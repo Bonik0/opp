@@ -19,7 +19,7 @@ target_link_libraries(lab_02_exe PRIVATE lab_02_lib)
 
 enable_testing()
 
-add_executable(tests test2.cpp src/three.cpp)
+add_executable(tests test2.cpp src/Three.cpp)
 target_link_libraries(tests ${GTEST_LIBRARIES})
 
 add_test(NAME BASIC COMMAND tests)
