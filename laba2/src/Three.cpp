@@ -96,6 +96,7 @@ void Three::RemoveZeros(){
         new_array[i] = _array[i];
     }
     _array = new_array;
+    delete[] new_array;
 }
 
 Three &Three::operator=(const Three &other){
@@ -198,7 +199,7 @@ Three Three::operator-(const Three& second) const {
 }
 
 std::ostream &operator<<(std::ostream &os, const Three &elem){
-    for (int i = elem._size - 1; i > -1; i--){
+    for (size_t i = elem._size - 1; i >= 0; i--){
         os << elem._array[i];
     }
     return os;
@@ -212,7 +213,7 @@ std::istream &operator>>(std::istream &is, Three &elem){
 }
 
 Three &Three::operator+=(const Three & other) {
-    *(this)  = *(this) + other;
+    *(this) = *(this) + other;
     return *(this);
 }
     
