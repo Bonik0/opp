@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "Three.h"
+#include "include/Three.h"
 
 
 TEST(test_1, test_init) {   
