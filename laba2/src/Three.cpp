@@ -128,7 +128,7 @@ bool Three::operator>(const Three &other) const{
     if (_size != other._size){
         return _size > other._size;
     }
-    for (size_t i = _size - 1; i > -1; i--){
+    for (size_t i = _size - 1; i >= 0; i--){
         if(_array[i] != other._array[i]){
             return _array[i] > other._array[i];
         }
