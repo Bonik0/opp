@@ -27,7 +27,7 @@ Point_vector::Point_vector(const std::vector<Point> &vector) {
     } else {
         _size = vector.size();
         capacity = 2 * vector.size();
-        array = new Point [capacity];
+        array = new Point[capacity];
         size_t i = 0;
         for (Point f: vector) {
             array[i] = f;
@@ -58,6 +58,15 @@ Point_vector::Point_vector(size_t n, const Point point){
         array[i] = point;
     }
 }
+Point_vector::Point_vector(const Point_vector &other){
+    _size = other.size();
+    capacity = _size * 2;
+    if(capacity == 0){
+        capacity = 2;
+    } 
+    array = new Point[capacity];
+    memcpy(array, other.get_arrey(), _size * sizeof(Point));
+}
 
 Point_vector::~Point_vector() {
     _size = 0;
@@ -65,6 +74,35 @@ Point_vector::~Point_vector() {
     delete[] array;
     array = nullptr;
 }
+
+Point_vector &Point_vector::operator = (const Point_vector &other){
+    _size = other.size();
+    capacity = _size * 2;
+    if(capacity == 0){
+        capacity = 2;
+    } 
+    array = new Point[capacity];
+    memcpy(array, other.get_arrey(), _size * sizeof(Point));
+    return *this;
+}
+
+bool Point_vector::operator == (const Point_vector &other) const{
+    if(_size != other.size()){
+        return false;
+    }
+    for(size_t i = 0; i < _size; i++){
+        if(array[i] != other[i]){
+            return false;
+        }
+    }
+    return true;
+}
+
+
+bool Point_vector::operator != (const Point_vector &other) const{
+    return !(*this == other);
+}
+
 
 void Point_vector::relloc(size_t new_capacity){
     Point* temp = new Point[_size];

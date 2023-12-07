@@ -12,6 +12,8 @@ int main(){
     s.erase(0);
     s.erase(0);
     s.erase(0);
-    Point_vector a(10, Point(5,5));
-    std::cout << s << a;
+    Point_vector a = s;
+    if(a == s){
+        std::cout << "1";
+    }
 }
