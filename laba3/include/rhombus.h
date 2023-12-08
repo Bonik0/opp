@@ -11,7 +11,7 @@ class Rhombus final: public Figure {
         Rhombus(const Point_vector &other);
         Rhombus(const Figure &other);
         ~Rhombus();
-        Rhombus &operator = (const Rhombus &other); 
+        Rhombus &operator = (const Figure &other); 
         operator double() const override;
     private:
         bool is_equal(const Figure &other) const override;

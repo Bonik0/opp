@@ -37,11 +37,11 @@ Rhombus::Rhombus(const Figure &other){
     }
 }
 
-Rhombus &Rhombus::operator = (const Rhombus &other){
-    if(!is_valid(other.points)){
+Rhombus &Rhombus::operator = (const Figure &other){
+    if(!is_valid(other.get_points())){
         throw std::range_error("invalid points");
     } else {
-        points = other.points;
+        points = other.get_points();
     }
     return *this;
 }

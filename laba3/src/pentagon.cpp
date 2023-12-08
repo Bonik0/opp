@@ -37,11 +37,11 @@ Pentagon::Pentagon(const Figure &other){
     }
 }
 
-Pentagon &Pentagon::operator = (const Pentagon &other){
-    if(!is_valid(other.points)){
+Pentagon &Pentagon::operator = (const Figure &other){
+    if(!is_valid(other.get_points())){
         throw std::range_error("invalid points");
     } else {
-        points = other.points;
+        points = other.get_points();
     }
     return *this;
 }

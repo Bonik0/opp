@@ -693,6 +693,53 @@ TEST(test_array, init2) {
   ASSERT_TRUE(p.size() == 10);
 }
 
+TEST(other_fig, err1) {
+  Rhombus r = {Point(0, 0), Point(1, 1), Point(0, 2), Point(-1, 1)};
+  Pentagon p = {Point(0, 0), Point(1, 1), Point(0.36, 2.26), Point(-1.04, 2.04), Point(-1.26, 0.64)};
+  ASSERT_THROW(r = p, std::range_error);
+}
+
+TEST(other_fig, err2) {
+  Rhombus r = {Point(0, 0), Point(1, 1), Point(0, 2), Point(-1, 1)};
+  Hexagon h = {Point(0,0), Point(1, 0), Point(1.5, 0.87), Point(1, 1.73), Point(0, 1.73), Point(-0.5, 0.87)};
+  ASSERT_THROW(r = h, std::range_error);
+}
+
+TEST(other_fig, err3) {
+  Pentagon p = {Point(0, 0), Point(1, 1), Point(0.36, 2.26), Point(-1.04, 2.04), Point(-1.26, 0.64)};
+  Hexagon h = {Point(0,0), Point(1, 0), Point(1.5, 0.87), Point(1, 1.73), Point(0, 1.73), Point(-0.5, 0.87)};
+  ASSERT_THROW(p = h, std::range_error);
+}
+
+TEST(other_fig, err4) {
+  Pentagon p = {Point(0, 0), Point(1, 1), Point(0.36, 2.26), Point(-1.04, 2.04), Point(-1.26, 0.64)};
+  ASSERT_THROW(Hexagon h(p), std::range_error);
+}
+
+TEST(other_fig, err5) {
+  Hexagon h = {Point(0,0), Point(1, 0), Point(1.5, 0.87), Point(1, 1.73), Point(0, 1.73), Point(-0.5, 0.87)};
+  ASSERT_THROW(Pentagon p(h), std::range_error);
+}
+
+TEST(other_fig, err6) {
+  Hexagon h = {Point(0,0), Point(1, 0), Point(1.5, 0.87), Point(1, 1.73), Point(0, 1.73), Point(-0.5, 0.87)};
+  ASSERT_THROW(Rhombus p(h), std::range_error);
+}
+TEST(other_fig, err7) {
+  Pentagon p = {Point(0, 0), Point(1, 1), Point(0.36, 2.26), Point(-1.04, 2.04), Point(-1.26, 0.64)};
+  ASSERT_THROW(Rhombus r(p), std::range_error);
+}
+
+TEST(other_fig, err8) {
+  Rhombus r = {Point(0, 0), Point(1, 1), Point(0, 2), Point(-1, 1)};
+  ASSERT_THROW(Hexagon h(r), std::range_error);
+}
+
+TEST(other_fig, err9) {
+  Rhombus r = {Point(0, 0), Point(1, 1), Point(0, 2), Point(-1, 1)};
+  ASSERT_THROW(Pentagon p(r), std::range_error);
+}
+
 TEST(test_array, eq) {
   Rhombus r = {Point(0, 0), Point(1, 1), Point(0, 2), Point(-1, 1)};
   Pentagon p = {Point(0, 0), Point(1, 1), Point(0.36, 2.26), Point(-1.04, 2.04), Point(-1.26, 0.64)};

@@ -37,11 +37,11 @@ Hexagon::Hexagon(const Figure &other){
     }
 }
 
-Hexagon &Hexagon::operator = (const Hexagon &other){
-    if(!is_valid(other.points)){
+Hexagon &Hexagon::operator = (const Figure &other){
+    if(!is_valid(other.get_points())){
         throw std::range_error("invalid points");
     } else {
-        points = other.points;
+        points = other.get_points();
     }
     return *this;
 }

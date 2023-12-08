@@ -11,7 +11,7 @@ class Hexagon final: public Figure {
         Hexagon(const Point_vector &other);
         Hexagon(const Figure &other);
         ~Hexagon();
-        Hexagon &operator = (const Hexagon &other); 
+        Hexagon &operator = (const Figure &other); 
         operator double() const override;
     private:
         bool is_equal(const Figure &other) const override;

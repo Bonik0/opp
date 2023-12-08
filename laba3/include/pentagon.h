@@ -11,7 +11,7 @@ class Pentagon final: public Figure {
         Pentagon(const Point_vector &other);
         Pentagon(const Figure &other);
         ~Pentagon();
-        Pentagon &operator = (const Pentagon &other); 
+        Pentagon &operator = (const Figure &other); 
         operator double() const override;
     private:
         bool is_equal(const Figure &other) const override;
