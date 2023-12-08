@@ -693,6 +693,19 @@ TEST(test_array, init2) {
   ASSERT_TRUE(p.size() == 10);
 }
 
+TEST(test_array, eq) {
+  Rhombus r = {Point(0, 0), Point(1, 1), Point(0, 2), Point(-1, 1)};
+  Pentagon p = {Point(0, 0), Point(1, 1), Point(0.36, 2.26), Point(-1.04, 2.04), Point(-1.26, 0.64)};
+  Hexagon h = {Point(0,0), Point(1, 0), Point(1.5, 0.87), Point(1, 1.73), Point(0, 1.73), Point(-0.5, 0.87)};
+  ASSERT_TRUE(r != p && p != h);
+}
+
+TEST(test_array, eq1) {
+  Rhombus r = {Point(0, 0), Point(1, 1), Point(0, 2), Point(-1, 1)};
+  Pentagon p = {Point(0, 0), Point(1, 1), Point(0.36, 2.26), Point(-1.04, 2.04), Point(-1.26, 0.64)};
+  Hexagon h = {Point(0,0), Point(1, 0), Point(1.5, 0.87), Point(1, 1.73), Point(0, 1.73), Point(-0.5, 0.87)};
+  ASSERT_TRUE(r != h && p != r);
+}
 
 TEST(test_array, init3) {
   Rhombus r = {Point(0, 0), Point(1, 1), Point(0, 2), Point(-1, 1)};
