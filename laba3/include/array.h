@@ -1,12 +1,14 @@
+#pragma once
+
 #include "figure.h"
 #include <cstring>
 
 class FigureArray {
 private:
     Figure **array;
-    int _size;
-    int capacity;
-    void relloc();
+    size_t _size;
+    size_t capacity;
+    void relloc(size_t mewcapacity);
 public:
     FigureArray();
     FigureArray(const std::initializer_list<Figure *> &list);
@@ -17,7 +19,7 @@ public:
     void pop_back();
     void erase(size_t index);
     Figure** get_arr();
-    int size();
+    size_t size();
     Figure* operator[](size_t index);
     operator double();
     friend std::ostream &operator << (std::ostream& os, const FigureArray& f);

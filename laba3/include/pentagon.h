@@ -3,15 +3,15 @@
 #include "figure.h"
 #include <cmath>
 
-class Rhombus final: public Figure {
+class Pentagon final: public Figure {
     public:
-        Rhombus();
-        Rhombus(const std::initializer_list<Point> &list);
-        Rhombus(const std::vector<Point> &vector);
-        Rhombus(const Point_vector &other);
-        Rhombus(const Figure &other);
-        ~Rhombus();
-        Rhombus &operator = (const Rhombus &other); 
+        Pentagon();
+        Pentagon(const std::initializer_list<Point> &list);
+        Pentagon(const std::vector<Point> &vector);
+        Pentagon(const Point_vector &other);
+        Pentagon(const Figure &other);
+        ~Pentagon();
+        Pentagon &operator = (const Pentagon &other); 
         operator double() const override;
     private:
         bool is_equal(const Figure &other) const override;
