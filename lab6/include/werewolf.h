@@ -17,5 +17,5 @@ class Werewolf : public NPC {
         std::string create_name() override;
     public:
         Werewolf(int x, int y, std::string name_npc = "");
-        bool accept(Visitor& visitor) const override;
+        bool accept(std::shared_ptr<Visitor> visitor) const override;
 };

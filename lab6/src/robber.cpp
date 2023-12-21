@@ -2,11 +2,11 @@
 
 
 bool VisitorRobber::visit(std::shared_ptr<const Bear> attacer) const{
-    return true;
+    return false;
 }
 
 bool VisitorRobber::visit(std::shared_ptr<const Werewolf> attacer) const{
-    return false;
+    return true;
 }
 
 bool VisitorRobber::visit(std::shared_ptr<const Robber> attacer) const{
@@ -50,12 +50,16 @@ std::string Robber::create_name(){
     return second_name + "_" + first_name;
 }
 
-Robber::Robber(int x, int y, std::string name_npc) : NPC(x, y, robber, name){
+Robber::Robber(int x, int y, std::string name_npc) : NPC(x, y, robber){
+    if(name_npc == ""){
+        name_npc = create_name();
+    }
+    name = name_npc;
 }
 
 
-bool Robber::accept(Visitor& visitor) const {
-    return visitor.visit(std::dynamic_pointer_cast<const Robber>(shared_from_this()));
+bool Robber::accept(std::shared_ptr<Visitor> visitor) const {
+    return visitor->visit(std::dynamic_pointer_cast<const Robber>(shared_from_this()));
 }
 
 

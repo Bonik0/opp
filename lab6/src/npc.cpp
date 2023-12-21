@@ -2,14 +2,10 @@
 
 
 
-NPC::NPC(int x, int y, TypeNPC type_npc, std::string name_npc){
+NPC::NPC(int x, int y, TypeNPC type_npc){
     point.first = x;
     point.second = y;
     type = type_npc;
-    if(name_npc == ""){
-        name_npc = create_name();
-    }
-    name = name_npc;
 }
 
 
@@ -46,7 +42,7 @@ double NPC::distance(const std::shared_ptr<NPC> left, const std::shared_ptr<NPC>
 }
 
 std::ostream &operator<<(std::ostream &os, NPC & npc){
-    os << npc.point.first << " " << npc.point.second << " " << NPC::TypeNPC_to_string(npc.type) << " " << npc.name << "\n";
+    return os << npc.point.first << " " << npc.point.second << " " << NPC::TypeNPC_to_string(npc.type) << " " << npc.name << "\n";
 }
 
 void NPC::save(std::ofstream &ofs){

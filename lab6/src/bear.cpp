@@ -45,12 +45,16 @@ std::string Bear::create_name(){
     return second_name + "_" + first_name;
 }
 
-Bear::Bear(int x, int y, std::string name_npc) : NPC(x, y, bear, name){
+Bear::Bear(int x, int y, std::string name_npc) : NPC(x, y, bear){
+    if(name_npc == ""){
+        name_npc = create_name();
+    }
+    name = name_npc;
 }
 
 
-bool Bear::accept(Visitor& visitor) const {
-    return visitor.visit(std::dynamic_pointer_cast<const Bear>(shared_from_this()));
+bool Bear::accept(std::shared_ptr<Visitor> visitor) const {
+    return visitor->visit(std::dynamic_pointer_cast<const Bear>(shared_from_this()));
 }
 
 
