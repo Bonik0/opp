@@ -27,7 +27,7 @@ void Battle::battle(double distance){
     this->notify(start);
     for(std::shared_ptr<NPC> attacer: npc_list){
         for(std::shared_ptr<NPC> defender: npc_list){
-            if(attacer != defender && NPC::distance(attacer, defender) <= distance && dead_list.find(defender) == dead_list.end() && dead_list.find(attacer) == dead_list.end()){
+            if(attacer != defender && NPC::distance(attacer, defender) <= distance && dead_list.find(defender) == dead_list.end()){
                 bool is_win = attacer->accept(visiors[defender->get_type()]);
                 if(is_win){
                     dead_list.insert(defender);
