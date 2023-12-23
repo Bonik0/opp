@@ -3,7 +3,7 @@
 
 
 void Battle::ramdom_NPC(int quantity){
-    std::shared_ptr<Factory> fac;
+    std::shared_ptr<Factory> fac = std::make_shared<Factory>();
     for(int i = 0; i < quantity; i++){
         place_NPC(fac->create(std::rand() % 500, std::rand() % 500, TypeNPC(std::rand() % 3)));
     }
@@ -20,7 +20,7 @@ void Battle::remove_NPC(std::shared_ptr<NPC> npc){
 }
 
 void Battle::battle(double distance){
-    std::set<std::shared_ptr<NPC>> dead_list;
+    std::unordered_set<std::shared_ptr<NPC>> dead_list;
     std::unordered_map<TypeNPC, std::shared_ptr<Visitor>> visiors = {
         {bear, std::make_shared<VisitorBear>()}, {werewolf, std::make_shared<VisitorWerewolf>()}, {robber, std::make_shared<VisitorRobber>()}
     };
@@ -45,7 +45,7 @@ void Battle::battle(double distance){
 void Battle::get_NPC_from_consol(std::istream &is){
     int quantity;
     is >> quantity;
-    std::shared_ptr<Factory> fac;
+    std::shared_ptr<Factory> fac = std::make_shared<Factory>();
     for(int i = 0; i < quantity; i++){
         place_NPC(fac->create(is));
     }
@@ -54,7 +54,7 @@ void Battle::get_NPC_from_consol(std::istream &is){
 void Battle::get_NPC_from_file(std::ifstream &ifs){
     int quantity;
     ifs >> quantity;
-    std::shared_ptr<Factory> fac;
+    std::shared_ptr<Factory> fac = std::make_shared<Factory>();
     for(int i = 0; i < quantity; i++){
         place_NPC(fac->create(ifs));
     }
@@ -69,7 +69,7 @@ std::ostream &operator<<(std::ostream &os, Battle bt){
     return os;
 }
 
-std::set<std::shared_ptr<NPC>> Battle::get_NPC_list(){
+std::unordered_set<std::shared_ptr<NPC>> Battle::get_NPC_list(){
     return npc_list;
 }
 
@@ -122,7 +122,7 @@ ObserverConsol::ObserverConsol(){
 }
 
 
-void ObserverConsol::battle_start(const std::set<std::shared_ptr<NPC>> npc_list){
+void ObserverConsol::battle_start(const std::unordered_set<std::shared_ptr<NPC>> npc_list){
     std::cout << "\n------------Start battle------------\n";
     std::cout << npc_list.size() << " - fighters:\n";
     for(std::shared_ptr<NPC> npc: npc_list){
@@ -132,7 +132,7 @@ void ObserverConsol::battle_start(const std::set<std::shared_ptr<NPC>> npc_list)
 }
 
 
-void ObserverConsol::battle_end(const std::set<std::shared_ptr<NPC>> npc_list){
+void ObserverConsol::battle_end(const std::unordered_set<std::shared_ptr<NPC>> npc_list){
     std::cout << "\n------------End battle------------\n";
     std::cout << npc_list.size() << " - alive:\n";
     for(std::shared_ptr<NPC> npc: npc_list){
@@ -163,7 +163,7 @@ ObserverFile::~ObserverFile(){
     file.close();
 }
 
-void ObserverFile::battle_start(const std::set<std::shared_ptr<NPC>> npc_list){
+void ObserverFile::battle_start(const std::unordered_set<std::shared_ptr<NPC>> npc_list){
     file << "\n------------Start battle------------\n";
     file << npc_list.size() << " - fighters:\n";
     for(std::shared_ptr<NPC> npc: npc_list){
@@ -173,7 +173,7 @@ void ObserverFile::battle_start(const std::set<std::shared_ptr<NPC>> npc_list){
 }
 
 
-void ObserverFile::battle_end(const std::set<std::shared_ptr<NPC>> npc_list){
+void ObserverFile::battle_end(const std::unordered_set<std::shared_ptr<NPC>> npc_list){
     file << "\n------------End battle------------\n";
     file << npc_list.size() << " - alive:\n";
     for(std::shared_ptr<NPC> npc: npc_list){
