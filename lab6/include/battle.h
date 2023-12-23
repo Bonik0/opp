@@ -7,16 +7,16 @@ class Battle;
 class Observer : public std::enable_shared_from_this<Observer>{
     public:
         Observer();
-        virtual void battle_start(const std::set<std::shared_ptr<NPC>> npcList) = 0;
-        virtual void battle_end(const std::set<std::shared_ptr<NPC>> npcList) = 0;
+        virtual void battle_start(const std::unordered_set<std::shared_ptr<NPC>> npcList) = 0;
+        virtual void battle_end(const std::unordered_set<std::shared_ptr<NPC>> npcList) = 0;
         virtual void fight(std::shared_ptr<NPC> defender, std::shared_ptr<NPC> attacer, bool is_win) = 0;
 };
 
 class ObserverConsol : public Observer{
     public:
         ObserverConsol();
-        void battle_start(const std::set<std::shared_ptr<NPC>> npcList) override;
-        void battle_end(const std::set<std::shared_ptr<NPC>> npcList) override;
+        void battle_start(const std::unordered_set<std::shared_ptr<NPC>> npcList) override;
+        void battle_end(const std::unordered_set<std::shared_ptr<NPC>> npcList) override;
         void fight(std::shared_ptr<NPC> defender, std::shared_ptr<NPC> attacer, bool is_win) override;
 };
 
@@ -26,16 +26,16 @@ class ObserverFile : public Observer{
     public:
         ObserverFile(std::string name);
         ~ObserverFile();
-        void battle_start(const std::set<std::shared_ptr<NPC>> npcList) override;
-        void battle_end(const std::set<std::shared_ptr<NPC>> npcList) override;
+        void battle_start(const std::unordered_set<std::shared_ptr<NPC>> npcList) override;
+        void battle_end(const std::unordered_set<std::shared_ptr<NPC>> npcList) override;
         void fight(std::shared_ptr<NPC> defender, std::shared_ptr<NPC> attacer, bool is_win) override;
 };
 
 
 class Battle{
     protected:
-        std::set<std::shared_ptr<NPC>> npc_list;
-        std::set<std::shared_ptr<Observer>> observers;
+        std::unordered_set<std::shared_ptr<NPC>> npc_list;
+        std::unordered_set<std::shared_ptr<Observer>> observers;
     public:
         void ramdom_NPC(int quantity);
         void place_NPC(std::shared_ptr<NPC> npc);
@@ -44,7 +44,7 @@ class Battle{
         void get_NPC_from_file(std::ifstream &ifs);
         void battle(double distance);
         void save(std::ofstream &ofs);
-        std::set<std::shared_ptr<NPC>> get_NPC_list();
+        std::unordered_set<std::shared_ptr<NPC>> get_NPC_list();
         friend std::ostream &operator<<(std::ostream &os, Battle bt);
         void attach_obs(std::shared_ptr<Observer> obs);
         void detach_obs(std::shared_ptr<Observer> obs);

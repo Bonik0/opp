@@ -7,7 +7,7 @@
 #include <unordered_map>
 #include <memory>
 #include <vector>
-#include <set>
+#include <unordered_set>
 #include <random>
 
 enum TypeNPC {
