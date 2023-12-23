@@ -13,6 +13,8 @@ int main(){
     b->attach_obs(ob_fl);
     b->battle(100);
     b->save(file_out);
+    file_in.close();
+    file_out.close();
     std::shared_ptr<Battle> b1 = std::make_shared<Battle>();
     b1->ramdom_NPC(100);
     std::shared_ptr<ObserverConsol> cons_obs = std::make_shared<ObserverConsol>();
