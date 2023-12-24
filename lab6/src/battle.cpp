@@ -156,7 +156,7 @@ void ObserverConsol::fight(std::shared_ptr<NPC> defender, std::shared_ptr<NPC> a
 
 
 ObserverFile::ObserverFile(std::string name){
-    file.open(name + "_log.txt");
+    file.open(name + "_log.txt", std::ios::app);
 }
 
 ObserverFile::~ObserverFile(){
