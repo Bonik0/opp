@@ -1,10 +1,10 @@
-#include "point_src.hpp"
-#include "array_src.hpp"
-#include "hexagon.hpp"
-#include "rhombus.hpp"
-#include "pentagon.hpp"
-#include "figure_src.hpp"
-#include "array_fig.hpp"
+#include "src/point_src.h"
+#include "src/array_src.h"
+#include "src/hexagon.h"
+#include "src/rhombus.h"
+#include "src/pentagon.h"
+#include "src/figure_src.h"
+#include "src/array_figure.h"
 #include <gtest/gtest.h>
 
 
@@ -237,6 +237,8 @@ TEST(test_Array, init14) {
   p1 = std::move(p);
   ASSERT_TRUE(p1[0] == Point<double>(1.1, 1.1) && p1.size() == 1);
 }
+
+
 TEST(test_Array, init15) {
   Array<Point<double>> p({Point<double>(1.1, 1.1)});
   Array<Point<double>> p1(std::move(p));
@@ -355,6 +357,8 @@ TEST(test_point_vector, erace4) {
   p1.erase(0);
   ASSERT_TRUE(p1 == p);
 }
+
+
 TEST(test_point_vector, erace5) {
   Array<Point<double>> p = {Point<double>(1.1, 1.1), Point<double>(), Point<double>(2, 2)};
   p.erase(1);
@@ -381,6 +385,7 @@ TEST(test_point_vector, operator_get3) {
   ASSERT_THROW(p[0], std::range_error);
 }
 
+
 TEST(test_hexagon, init1) {
   Hexagon<double> p({Point<double>(0,0), Point<double>(1, 0), Point<double>(1.5, 0.87), Point<double>(1, 1.73), Point<double>(0, 1.73), Point<double>(-0.5, 0.87)});
   ASSERT_TRUE(p.get_center() == Point<double>(0.5, 0.866667));
@@ -391,6 +396,7 @@ TEST(test_hexagon, init3) {
   Hexagon<double> p(v);
   ASSERT_TRUE(p.get_center() == Point<double>(0.5, 0.866667));
 }
+
 
 TEST(test_hexagon, init4) {
   Array<Point<double>> v = {Point<double>(0,0), Point<double>(1, 0), Point<double>(1.5, 0.87), Point<double>(1, 1.73), Point<double>(0, 1.73), Point<double>(-0.5, 0.87)};
@@ -422,11 +428,13 @@ TEST(test_hexagon, init10) {
     ASSERT_NO_THROW(Hexagon<double> t({Point<double>(0,0), Point<double>(1, 0), Point<double>(1.5, 0.87), Point<double>(1, 1.73), Point<double>(0, 1.73), Point<double>(-0.5, 0.87)}));
 }
 
+
 TEST(test_hexagon, get_points) {
   Array<Point<double>> v = {Point<double>(0,0), Point<double>(1, 0), Point<double>(1.5, 0.87), Point<double>(1, 1.73), Point<double>(0, 1.73), Point<double>(-0.5, 0.87)};
   Hexagon<double> p(v);
   ASSERT_TRUE(p.get_points() == v);
 }
+
 
 TEST(test_hexagon, get_center) {
   Array<Point<double>> v = {Point<double>(0,0), Point<double>(1, 0), Point<double>(1.5, 0.87), Point<double>(1, 1.73), Point<double>(0, 1.73), Point<double>(-0.5, 0.87)};
@@ -435,11 +443,13 @@ TEST(test_hexagon, get_center) {
   ASSERT_TRUE(p.get_center() == p1.get_center() && p1.get_center() == Point<double>(0.5, 0.866667));
 }
 
+
 TEST(test_hexagon, operator_double) {
   Array<Point<double>> v = {Point<double>(0,0), Point<double>(1, 0), Point<double>(1.5, 0.87), Point<double>(1, 1.73), Point<double>(0, 1.73), Point<double>(-0.5, 0.87)};
   Hexagon<double> p(v);
   ASSERT_TRUE((double) p - 2.59808 < EPSILON);
 }
+
 
 TEST(test_hexagon, operator_double1) {
   Array<Point<double>> v = {Point<double>(0,0), Point<double>(1, 0), Point<double>(1.5, 0.87), Point<double>(1, 1.73), Point<double>(0, 1.73), Point<double>(-0.5, 0.87)};
@@ -447,37 +457,47 @@ TEST(test_hexagon, operator_double1) {
   ASSERT_TRUE((double) p - 3 * std::pow(3, 0.5) / 2 < EPSILON);
 }
 
+
 TEST(test_hexagon, eq1) {
   Hexagon<double> v = {Point<double>(0,0), Point<double>(1, 0), Point<double>(1.5, 0.87), Point<double>(1, 1.73), Point<double>(0, 1.73), Point<double>(-0.5, 0.87)};
   Hexagon<double> p(v);
   ASSERT_TRUE(v.get_center() == p.get_center() && (double) v == (double) p);
 }
+
+
 TEST(test_hexagon, eq2) {
   Hexagon<double> v = {Point<double>(0,0), Point<double>(1, 0), Point<double>(1.5, 0.87), Point<double>(1, 1.73), Point<double>(0, 1.73), Point<double>(-0.5, 0.87)};
   Hexagon<double> p = {Point<double>(0,0), Point<double>(2, 0), Point<double>(3, 1.73), Point<double>(2, 3.46), Point<double>(0, 3.46), Point<double>(-1, 1.73)};
   ASSERT_TRUE(v != p && 2 * ((double) v) - (double) p < EPSILON);
 }
+
+
 TEST(test_hexagon, eq3) {
    Hexagon<double> v = {Point<double>(0,0), Point<double>(1, 0), Point<double>(1.5, 0.87), Point<double>(1, 1.73), Point<double>(0, 1.73), Point<double>(-0.5, 0.87)};
    Hexagon<double> p = v;
   ASSERT_TRUE(v == p);
 }
 
+
 TEST(test_hexagon, eq4) {
    Hexagon<double> v = {Point<double>(0,0), Point<double>(1, 0), Point<double>(1.5, 0.87), Point<double>(1, 1.73), Point<double>(0, 1.73), Point<double>(-0.5, 0.87)};
    Pentagon<double> p = {Point<double>(0, 0), Point<double>(1, 1), Point<double>(0.36, 2.26), Point<double>(-1.04, 2.04), Point<double>(-1.26, 0.64)};
    ASSERT_THROW(p = v, std::range_error);
 }
+
+
 TEST(test_hexagon, eq5) {
    Hexagon<double> v = {Point<double>(0,0), Point<double>(1, 0), Point<double>(1.5, 0.87), Point<double>(1, 1.73), Point<double>(0, 1.73), Point<double>(-0.5, 0.87)};
    Rhombus<double> p = {Point<double>(0, 0), Point<double>(1, 1), Point<double>(0, 2), Point<double>(-1, 1)};
    ASSERT_THROW(p = v, std::range_error);
 }
 
+
 TEST(test_pentagon, init1) {
   Pentagon<double> p({Point<double>(0, 0), Point<double>(1, 1), Point<double>(0.36, 2.26), Point<double>(-1.04, 2.04), Point<double>(-1.26, 0.64)});
   ASSERT_TRUE(p.get_center() == Point<double>(-0.188, 1.188));
 }
+
 
 TEST(test_pentagon, init3) {
   Array<Point<double>> v = {Point<double>(0, 0), Point<double>(1, 1), Point<double>(0.36, 2.26), Point<double>(-1.04, 2.04), Point<double>(-1.26, 0.64)};
@@ -491,11 +511,15 @@ TEST(test_pentagon, init4) {
   ASSERT_TRUE(p.get_center() == Point<double>(-0.188, 1.188));
 }
 
+
+
 TEST(test_pentagon, init5) {
   Pentagon<double> v = {Point<double>(0, 0), Point<double>(1, 1), Point<double>(0.36, 2.26), Point<double>(-1.04, 2.04), Point<double>(-1.26, 0.64)};
   Pentagon<double> p(v);
   ASSERT_TRUE(p.get_center() == Point<double>(-0.188, 1.188) && v == p);
 }
+
+
 
 TEST(test_pentagon, init6) {
   Pentagon<double> v = {Point<double>(0, 0), Point<double>(1, 1), Point<double>(0.36, 2.26), Point<double>(-1.04, 2.04), Point<double>(-1.26, 0.64)};
@@ -515,6 +539,7 @@ TEST(test_pentagon, init10) {
     ASSERT_NO_THROW(Pentagon<double> t({Point<double>(0, 0), Point<double>(1, 1), Point<double>(0.36, 2.26), Point<double>(-1.04, 2.04), Point<double>(-1.26, 0.64)}));
 }
 
+
 TEST(test_pentagon, get_points) {
   Array<Point<double>> v = {Point<double>(0, 0), Point<double>(1, 1), Point<double>(0.36, 2.26), Point<double>(-1.04, 2.04), Point<double>(-1.26, 0.64)};
   Pentagon<double> p(v);
@@ -528,6 +553,7 @@ TEST(test_pentagon, get_center) {
   ASSERT_TRUE(p.get_center() == p1.get_center() && p1.get_center() == Point<double>(-0.188, 1.188));
 }
 
+
 TEST(test_pentagon, operator_double) {
   Array<Point<double>> v = {Point<double>(0, 0), Point<double>(1, 1), Point<double>(0.36, 2.26), Point<double>(-1.04, 2.04), Point<double>(-1.26, 0.64)};
   Pentagon<double> p(v);
@@ -540,27 +566,36 @@ TEST(test_pentagon, operator_double1) {
   ASSERT_TRUE((double)p - std::pow(Point<double>::distance(v[0], v[1]), 2) * ((sqrt(5.0) * sqrt(5.0 + 2.0 * sqrt(5.0)))/ 4.0) < EPSILON);
 }
 
+
 TEST(test_pentagon, eq1) {
   Pentagon<double> v = {Point<double>(0, 0), Point<double>(1, 1), Point<double>(0.36, 2.26), Point<double>(-1.04, 2.04), Point<double>(-1.26, 0.64)};
   Pentagon<double> p(v);
   ASSERT_TRUE(v.get_center() == p.get_center() && (double) v == (double) p);
 }
+
+
 TEST(test_pentagon, eq2) {
   Pentagon<double> v = {Point<double>(0, 0), Point<double>(1, 1), Point<double>(0.36, 2.26), Point<double>(-1.04, 2.04), Point<double>(-1.26, 0.64)};
   Pentagon<double> p = {Point<double>(0,0), Point<double>(2, 2), Point<double>(0.72, 4.52), Point<double>(-2.08, 4.08), Point<double>(-2.52, 1.28)};
   ASSERT_TRUE(v != p && 2 * ((double) v) - (double) p < EPSILON);
 }
+
+
+
 TEST(test_pentagon, eq3) {
    Pentagon<double> v = {Point<double>(0, 0), Point<double>(1, 1), Point<double>(0.36, 2.26), Point<double>(-1.04, 2.04), Point<double>(-1.26, 0.64)};
    Pentagon<double> p = v;
   ASSERT_TRUE(v == p);
 }
 
+
 TEST(test_pentagon, eq4) {
    Pentagon<double> v = {Point<double>(0, 0), Point<double>(1, 1), Point<double>(0.36, 2.26), Point<double>(-1.04, 2.04), Point<double>(-1.26, 0.64)};
    Hexagon<double> h = {Point<double>(0,0), Point<double>(1, 0), Point<double>(1.5, 0.87), Point<double>(1, 1.73), Point<double>(0, 1.73), Point<double>(-0.5, 0.87)};
    ASSERT_THROW(h = v, std::range_error);
 }
+
+
 TEST(test_pentagon, eq5) {
    Pentagon<double> v = {Point<double>(0, 0), Point<double>(1, 1), Point<double>(0.36, 2.26), Point<double>(-1.04, 2.04), Point<double>(-1.26, 0.64)};
    Rhombus<double> p = {Point<double>(0, 0), Point<double>(1, 1), Point<double>(0, 2), Point<double>(-1, 1)};
@@ -573,11 +608,13 @@ TEST(yest_rhombus, init1) {
   ASSERT_TRUE(p.get_center() == Point<double>(0, 1));
 }
 
+
 TEST(yest_rhombus, init3) {
   Array<Point<double>> v = {Point<double>(0, 0), Point<double>(1, 1), Point<double>(0, 2), Point<double>(-1, 1)};
   Rhombus<double> p(v);
   ASSERT_TRUE(p.get_center() == Point<double>(0, 1));
 }
+
 
 TEST(yest_rhombus, init4) {
   Array<Point<double>> v = {Point<double>(0, 0), Point<double>(1, 1), Point<double>(0, 2), Point<double>(-1, 1)};
@@ -591,10 +628,11 @@ TEST(yest_rhombus, init5) {
   ASSERT_TRUE(p.get_center() == Point<double>(0, 1) && v == p);
 }
 
+
 TEST(yest_rhombus, init6) {
-  Rhombus<double> v = {Point<double>(0, 0), Point<double>(1, 1), Point<double>(0, 2), Point<double>(-1, 1)};
-  Rhombus<double> p = v;
-  ASSERT_TRUE(p.get_center() == Point<double>(0, 1) && v == p);
+  Rhombus<int> v = {Point<int>(0, 0), Point<int>(1, 1), Point<int>(0, 2), Point<int>(-1, 1)};
+  Rhombus<int> p = v;
+  ASSERT_TRUE(p.get_center() == Point<int>(0, 1) && v == p);
 }
 
 
@@ -603,6 +641,7 @@ TEST(yest_rhombus, init8) {
   Array<Point<double>> v = {Point<double>(1,0), Point<double>(1, 0), Point<double>(1.5, 0.87), Point<double>(1, 1.73), Point<double>(0, 1.73), Point<double>(-0.5, 0.87)};
   ASSERT_THROW(Rhombus<double> p(v), std::range_error);
 }
+
 
 
 TEST(yest_rhombus, init10) {
@@ -615,6 +654,7 @@ TEST(yest_rhombus, get_points) {
   ASSERT_TRUE(p.get_points() == v);
 }
 
+
 TEST(yest_rhombus, get_center) {
   Array<Point<double>> v = {Point<double>(0, 0), Point<double>(1, 1), Point<double>(0, 2), Point<double>(-1, 1)};
   Rhombus<double> p(v);
@@ -622,11 +662,13 @@ TEST(yest_rhombus, get_center) {
   ASSERT_TRUE(p.get_center() == p1.get_center() && p1.get_center() == Point<double>(0, 1));
 }
 
+
 TEST(yest_rhombus, operator_double) {
   Array<Point<double>> v = {Point<double>(0, 0), Point<double>(1, 1), Point<double>(0, 2), Point<double>(-1, 1)};
   Rhombus<double> p(v);
   ASSERT_TRUE((double) p - 2.59808 < EPSILON);
 }
+
 
 TEST(yest_rhombus, operator_double1) {
   Array<Point<double>> v = {Point<double>(0, 0), Point<double>(1, 1), Point<double>(0, 2), Point<double>(-1, 1)};
@@ -634,11 +676,13 @@ TEST(yest_rhombus, operator_double1) {
   ASSERT_TRUE((double) p - 3 * std::pow(3, 0.5) / 2 < EPSILON);
 }
 
+
 TEST(yest_rhombus, eq1) {
   Rhombus<double> v = {Point<double>(0, 0), Point<double>(1, 1), Point<double>(0, 2), Point<double>(-1, 1)};
   Rhombus<double> p(v);
   ASSERT_TRUE(v.get_center() == p.get_center() && (double) v == (double) p);
 }
+
 
 TEST(yest_rhombus, eq3) {
    Rhombus<double> v = {Point<double>(0, 0), Point<double>(1, 1), Point<double>(0, 2), Point<double>(-1, 1)};
@@ -646,11 +690,13 @@ TEST(yest_rhombus, eq3) {
   ASSERT_TRUE(v == p);
 }
 
+
 TEST(yest_rhombus, eq4) {
    Rhombus<double> v = {Point<double>(0, 0), Point<double>(1, 1), Point<double>(0, 2), Point<double>(-1, 1)};
    Pentagon<double> p = {Point<double>(0, 0), Point<double>(1, 1), Point<double>(0.36, 2.26), Point<double>(-1.04, 2.04), Point<double>(-1.26, 0.64)};
    ASSERT_THROW(p = v, std::range_error);
 }
+
 
 TEST(test_array, eq) {
   Rhombus<double> r = {Point<double>(0, 0), Point<double>(1, 1), Point<double>(0, 2), Point<double>(-1, 1)};
@@ -659,12 +705,41 @@ TEST(test_array, eq) {
   ASSERT_TRUE(r != p && p != h);
 }
 
+
+
 TEST(test_array, eq1) {
   Rhombus<double> r = {Point<double>(0, 0), Point<double>(1, 1), Point<double>(0, 2), Point<double>(-1, 1)};
   Pentagon<double> p = {Point<double>(0, 0), Point<double>(1, 1), Point<double>(0.36, 2.26), Point<double>(-1.04, 2.04), Point<double>(-1.26, 0.64)};
   Hexagon<double> h = {Point<double>(0,0), Point<double>(1, 0), Point<double>(1.5, 0.87), Point<double>(1, 1.73), Point<double>(0, 1.73), Point<double>(-0.5, 0.87)};
   ASSERT_TRUE(r != h && p != r);
 }
+
+
+
+TEST(test_array, oper_double) {
+  Rhombus<double> r = {Point<double>(0, 0), Point<double>(1, 1), Point<double>(0, 2), Point<double>(-1, 1)};
+  Pentagon<double> p = {Point<double>(0, 0), Point<double>(1, 1), Point<double>(0.36, 2.26), Point<double>(-1.04, 2.04), Point<double>(-1.26, 0.64)};
+  Hexagon<double> h = {Point<double>(0,0), Point<double>(1, 0), Point<double>(1.5, 0.87), Point<double>(1, 1.73), Point<double>(0, 1.73), Point<double>(-0.5, 0.87)};
+  Array<Figure<double>*> a = {&r, &p, &h};
+  ASSERT_TRUE(get_area(a) == (double) r + (double) h + (double) p);
+}
+
+
+
+TEST(test_array, oper_double1) {
+  Rhombus<double> r = {Point<double>(0, 0), Point<double>(1, 1), Point<double>(0, 2), Point<double>(-1, 1)};
+  Array<Figure<double>*> a = {&r};
+
+  ASSERT_TRUE(get_area(a) == 1.0);
+}
+
+TEST(test_array, oper_double2) {
+  Rhombus<double> r = {Point<double>(0, 0), Point<double>(1, 1), Point<double>(0, 2), Point<double>(-1, 1)};
+  Array<Figure<double>*> a = {&r};
+  a.pop_back();
+  ASSERT_TRUE(get_area(a) == 0);
+}
+
 
 
 
